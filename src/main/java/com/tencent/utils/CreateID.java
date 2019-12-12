@@ -61,6 +61,12 @@ public class CreateID {
         return stringBuffer.toString();
     }
 
+    /**
+     * 发帖id的创建可以是；时间（时分秒）+流水号+用户后4位
+     * 存储到数据库的时候，先根据uid % DB_num  ，获得需要插入的db_index，然后在mapper中输入order{#db_index}
+     * 然后在查询的时候，根据用户取模后算出的数据库，通过uid查询这个数据库中所有的发帖信息
+     * @param args
+     */
     public static void main(String[] args) {
         CreateID createID = new CreateID();
         String cid = createID.createID(2344);
